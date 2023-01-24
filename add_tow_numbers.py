@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
+
         """
         :type l1: ListNode
         :type l2: ListNode
@@ -15,7 +16,7 @@ class Solution(object):
         temp = None
         
         carry = 0
-
+        #loop for the tow lists
         while l1 is not None or l2 is not None:
             sum_value = carry
             if l1 is not None:
@@ -35,6 +36,7 @@ class Solution(object):
             else:
                 temp.next = node
                 temp = temp.next
+        #after the last iteration, we will check if there is carry left
         if carry > 0:
             temp.next = ListNode(carry)
         return head
