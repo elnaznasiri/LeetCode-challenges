@@ -1,14 +1,23 @@
-def addStrings(num1: str, num2: str) -> str:
-    i, j, carry = len(num1) - 1, len(num2) - 1, 0
-    ans = []
+def add_string(number1: str, number2: str) -> str:
+    i, j = len(number1) - 1, len(number2) - 1
+    carry = 0
+    result = []
+
     while i >= 0 or j >= 0 or carry:
-        carry += (0 if i < 0 else int(num1[i])) + (0 if j < 0 else int(num2[j]))
-        carry, v = divmod(carry, 10)
-        ans.append(str(v))
-        i, j = i - 1, j - 1
-    return ''.join(ans[::-1])
+        digit1 = int(number1[i]) if i >= 0 else 0
+        digit2 = int(number2[j]) if j >= 0 else 0
+
+        total = digit1 + digit2 + carry
+        carry = total // 10
+        result.append(total % 10)
+
+        i -= 1
+        j -= 1
+    result.reverse()
+    return ''.join(map(str, result))
 
 
-num1 = "11"
-num2 = "123"
-print(addStrings(num1, num2))
+# Example usage
+num1 = "123"
+num2 = "456"
+print(add_string(num1, num2))  # Output: "579"
